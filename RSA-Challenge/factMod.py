@@ -34,7 +34,7 @@ def factor(mod, longM):
         finRango = pow(10, ((longM // 2) + 1))
         longFin = len(str(finRango))
         print("Fin del rango de búsqueda: {}".format(finRango))
-        print("Cantidad de dígitos del primer número del rango de búsqueda: {}\n".format(longFin))
+        print("Cantidad de dígitos del último número del rango de búsqueda: {}\n".format(longFin))
         
         cantNros = finRango - inicRango
         print("Cantidad de números a evaluar: {}\n".format(cantNros))
@@ -66,7 +66,7 @@ def factor(mod, longM):
         finRango = pow(10, ((longM // 2) + 1))
         longFin = len(str(finRango))
         print("Fin del rango de búsqueda: {}".format(finRango))
-        print("Cantidad de dígitos del primer número del rango de búsqueda: {}\n".format(longFin))
+        print("Cantidad de dígitos del último número del rango de búsqueda: {}\n".format(longFin))
         
         cantNros = finRango - inicRango
         print("Cantidad de números a evaluar: {}\n".format(cantNros))
@@ -125,7 +125,7 @@ def factor(mod, longM):
                     if primo1 % 1 == 0:
                         intRaiz += 1
                         break
-                        
+
                 if primo1 * primo2  == mod:
                     found = True
 
