@@ -32,7 +32,7 @@ def factor(mod, longM):
         print("Cantidad de dígitos del primer número del rango de búsqueda: {}\n".format(longInic))
         
         finRango = pow(10, ((longM // 2) + 1))
-        longFin = len(str(finRango))
+        longFin = len(str(finRango))    
         print("Fin del rango de búsqueda: {}".format(finRango))
         print("Cantidad de dígitos del último número del rango de búsqueda: {}\n".format(longFin))
         
@@ -108,7 +108,7 @@ def factor(mod, longM):
         while not found:
             cuad = pow(intRaiz, 2) - mod
             print("Evaluando: {}² - {} = {}".format(intRaiz, mod, cuad))
-            
+    
             raizCuad = math.isqrt(cuad)
             if cuad == pow(raizCuad, 2):
                 primo1 = intRaiz + raizCuad
@@ -128,7 +128,6 @@ def factor(mod, longM):
 
                 if primo1 * primo2  == mod:
                     found = True
-
                 print("\n¡FACTOR PRIMO ENCONTRADO!")
                 print("\nn = {}".format(mod))
                 print("\np = {}\n".format(primo1))
@@ -139,8 +138,8 @@ def factor(mod, longM):
                 
 def main():
     intN = int(input("Ingrese el módulo a factorizar (n) (DEC): "))
-    print("Módulo (n) (DEC):", intN)
     longMod = len(str(intN))
+    print("Módulo (n) (DEC):", intN)
     print("Cantidad de dígitos del módulo (n): {}\n".format(longMod))
     
     factor(intN, longMod)
