@@ -121,20 +121,18 @@ def factor(mod, longM):
                 print("{} = ({} + {}) · ({} - {})".format(mod, intRaiz, raizCuad, intRaiz, raizCuad))
                 print("{} = {} · {}".format(mod, primo1, primo2))
             
-                esPrimo = True
                 for i in range(2, primo1):
                     if primo1 % 1 == 0:
-                        esPrimo = False
                         intRaiz += 1
                         break
-            
-                found = True
-                
-                if found == True and primo1 * primo2  == mod:
-                    print("\n¡FACTOR PRIMO ENCONTRADO!")
-                    print("\nn = {}".format(mod))
-                    print("\np = {}\n".format(primo1))
-                    print("q = {}\n".format(primo2))
+                        
+                if primo1 * primo2  == mod:
+                    found = True
+
+                print("\n¡FACTOR PRIMO ENCONTRADO!")
+                print("\nn = {}".format(mod))
+                print("\np = {}\n".format(primo1))
+                print("q = {}\n".format(primo2))
                 
             else:
                 intRaiz += 1
