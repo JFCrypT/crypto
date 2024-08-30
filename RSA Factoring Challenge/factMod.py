@@ -28,60 +28,42 @@ def factor(mod, longM):
     choice = int(input("Ingrese modo de operación (1. Secuencial | 2. Aleatorio | 3. Fermat): "))
     while choice < 1 or choice > 3:
         choice = int(input("¡ERROR! Ingrese un modo de operación válido (1. Secuencial | 2. Aleatorio | 3. Fermat): "))
-    
-    if choice == 1:
-        inicRango = pow(10, ((longM // 2) - 1))
-        longInic = len(str(inicRango))
-        print("Inicio del rango de búsqueda: {}".format(inicRango))
-        print("Cantidad de dígitos del primer número del rango de búsqueda: {}\n".format(longInic))
-        
-        finRango = pow(10, ((longM // 2) + 1))
-        longFin = len(str(finRango))    
-        print("Fin del rango de búsqueda: {}".format(finRango))
-        print("Cantidad de dígitos del último número del rango de búsqueda: {}\n".format(longFin))
-        
-        cantNros = finRango - inicRango
-        print("Cantidad de números a evaluar: {}\n".format(cantNros))
 
-        seg = 3
-        for i in range(1, 4):
-            msj = "El test comienza en {} segundo{}".format(seg, "s" if seg != 1 else "\n")
-            print(msj)
+    if choice == 1:
+        inicRango = max(2, pow(10, ((longM // 2) - 1)))
+        finRango = pow(10, ((longM // 2) + 1))
+
+        print("Inicio del rango de búsqueda: {}".format(inicRango))
+        print("Fin del rango de búsqueda: {}\n".format(finRango))
+        print("Cantidad de números a evaluar: {}\n".format(finRango - inicRango))
+
+        for seg in range(3, 0, -1):
+            print("El test comienza en {} segundo{}".format(seg, "s" if seg != 1 else ""))
             time.sleep(1)
-            seg -= 1
-        
+
         for num in range(inicRango, finRango):
             print("Evaluando: {}".format(num))
             if mod % num == 0:
                 intP = num
                 intQ = mod // intP
                 print("\n¡FACTOR PRIMO ENCONTRADO!")
-                print("\nn = {}".format(mod))
-                print("\np = {}\n".format(intP))
+                print("\nn = {}\n".format(mod))
+                print("p = {}\n".format(intP))
                 print("q = {}\n".format(intQ))
                 break
-    
-    elif choice == 2:
-        inicRango = pow(10, ((longM // 2) - 1))
-        longInic = len(str(inicRango))
-        print("Inicio del rango de búsqueda: {}".format(inicRango))
-        print("Cantidad de dígitos del primer número del rango de búsqueda: {}\n".format(longInic))
-        
-        finRango = pow(10, ((longM // 2) + 1))
-        longFin = len(str(finRango))
-        print("Fin del rango de búsqueda: {}".format(finRango))
-        print("Cantidad de dígitos del último número del rango de búsqueda: {}\n".format(longFin))
-        
-        cantNros = finRango - inicRango
-        print("Cantidad de números a evaluar: {}\n".format(cantNros))
 
-        seg = 3
-        for i in range(1, 4):
-            msj = "El test comienza en {} segundo{}".format(seg, "s" if seg != 1 else "\n")
-            print(msj)
+    elif choice == 2:
+        inicRango = max(2, pow(10, ((longM // 2) - 1)))
+        finRango = pow(10, ((longM // 2) + 1))
+
+        print("Inicio del rango de búsqueda: {}".format(inicRango))
+        print("Fin del rango de búsqueda: {}\n".format(finRango))
+        print("Cantidad de números a evaluar: {}\n".format(finRango - inicRango))
+
+        for seg in range(3, 0, -1):
+            print("El test comienza en {} segundo{}".format(seg, "s" if seg != 1 else ""))
             time.sleep(1)
-            seg -= 1
-        
+
         found = False
         while not found:
             randP = random.randint(inicRango, finRango)
@@ -89,63 +71,56 @@ def factor(mod, longM):
             if mod % randP == 0:
                 found = True
                 intP = randP
-                intQ = mod // randP
+                intQ = mod // intP
                 print("\n¡FACTOR PRIMO ENCONTRADO!")
-                print("\nn = {}".format(mod))
-                print("\np = {}\n".format(intP))
+                print("\nn = {}\n".format(mod))
+                print("p = {}\n".format(intP))
                 print("q = {}\n".format(intQ))
-    
+
     elif choice == 3:
-        raiz = math.sqrt(mod)
-        intRaiz = math.isqrt(mod) + 1
+        raiz = math.isqrt(mod)
+        intRaiz = raiz + 1
         print("Raíz cuadrada del módulo: {}".format(raiz))
         print("Aproximación al próximo entero: {}\n".format(intRaiz))
 
-        seg = 3
-        for i in range(1, 4):
-            msj = "El test comienza en {} segundo{}".format(seg, "s" if seg != 1 else "\n")
-            print(msj)
+        for seg in range(3, 0, -1):
+            print("El test comienza en {} segundo{}".format(seg, "s" if seg != 1 else ""))
             time.sleep(1)
-            seg -= 1
 
         found = False
         while not found:
             cuad = pow(intRaiz, 2) - mod
             print("Evaluando: {}² - {} = {}".format(intRaiz, mod, cuad))
-    
-            raizCuad = math.isqrt(cuad)
-            if cuad == pow(raizCuad, 2):
-                primo1 = intRaiz + raizCuad
-                primo2 = intRaiz - raizCuad
-                print("Cuadrado encontrado")
-                print("Ecuación resultante:")
-                print("{}² - {} = {}".format(intRaiz, mod, cuad))
-                print("{}² - {} = {}²".format(intRaiz, mod, raizCuad))
-                print("{} = {}² - {}²".format(mod, intRaiz, raizCuad))
-                print("{} = ({} + {}) · ({} - {})".format(mod, intRaiz, raizCuad, intRaiz, raizCuad))
-                print("{} = {} · {}".format(mod, primo1, primo2))
-            
-                for i in range(2, primo1):
-                    if primo1 % 1 == 0:
-                        intRaiz += 1
-                        break
 
-                if primo1 * primo2  == mod:
-                    found = True
-                print("\n¡FACTOR PRIMO ENCONTRADO!")
-                print("\nn = {}".format(mod))
-                print("\np = {}\n".format(primo1))
-                print("q = {}\n".format(primo2))
-                
+            if cuad >= 0:
+                raizCuad = math.isqrt(cuad)
+                if cuad == pow(raizCuad, 2):
+                    primo1 = intRaiz + raizCuad
+                    primo2 = intRaiz - raizCuad
+                    print("Cuadrado encontrado")
+                    print("Ecuación resultante:")
+                    print("{}² - {} = {}".format(intRaiz, mod, cuad))
+                    print("{}² - {} = {}²".format(intRaiz, mod, raizCuad))
+                    print("{} = {}² - {}²".format(mod, intRaiz, raizCuad))
+                    print("{} = ({} + {}) · ({} - {})".format(mod, intRaiz, raizCuad, intRaiz, raizCuad))
+                    print("{} = {} · {}".format(mod, primo1, primo2))
+
+                    if primo1 * primo2 == mod:
+                        found = True
+                        print("\n¡FACTOR PRIMO ENCONTRADO!")
+                        print("\nn = {}\n".format(mod))
+                        print("p = {}\n".format(primo1))
+                        print("q = {}\n".format(primo2))
+                intRaiz += 1
             else:
                 intRaiz += 1
-                
+
 def main():
     intN = int(input("Ingrese el módulo a factorizar (n) (DEC): "))
     longMod = len(str(intN))
     print("Módulo (n) (DEC):", intN)
     print("Cantidad de dígitos del módulo (n): {}\n".format(longMod))
-    
+
     factor(intN, longMod)
 
 main()
